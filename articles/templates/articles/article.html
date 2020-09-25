@@ -1,0 +1,44 @@
+{% extends "crowdocs/basic_layout.html" %}
+
+{% load static %}
+
+{% block title %}
+{{ article }}
+{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="offset-s0 offset-m2 offset-l3 col s12 m8 l6 card-panel row">
+    <h5>{{ article }}</h5>
+
+    {% autoescape off %}
+    <div class="article">{{ article.article_text | linebreaks }}</div>
+    {% endautoescape %}
+
+    <hr>
+    <div class="row">
+      <div class="col s5 m4 l3">
+        <div>written by <b>{{ article.user_author }}</b></div>
+        <div class="smaller-text">{{ article.date_added }}</div>
+      </div>
+
+      {% if article_version %}
+      <div class="push-s2 push-m3 push-l4 col s5 m4">
+        <div>updated by <b>{{ article_version.user_updater }}</b></div>
+        <div class="smaller-text">{{ article_version.date_updated }}</div>
+      </div>
+      {% endif %}
+    </div>
+    <hr>
+
+    <a class="offset-s0 col s6 m4 l3 waves-effect waves-light btn-small"
+        href="{% url 'articles:edit_article' article.id %}">
+        Edit article
+    </a>
+  </div>
+
+</div>
+
+{% endblock content %}

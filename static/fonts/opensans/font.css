@@ -1,0 +1,13 @@
+{% load static %}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url("{% static 'fonts/opensans/OpenSans.eot' %}");
+  src: url("{% static 'fonts/opensans/OpenSans.eot?#iefix' %}") format('embedded-opentype');
+  src: url("{% static 'fonts/opensans/OpenSans.woff2' %}") format('woff2');
+  src: url("{% static 'fonts/opensans/OpenSans.svg#OpenSans' %}") format('svg');
+  src: url("{% static 'fonts/opensans/OpenSans.ttf' %}") format('truetype');
+  src: url("{% static 'fonts/opensans/OpenSans.woff' %}") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

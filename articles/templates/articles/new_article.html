@@ -1,0 +1,43 @@
+{% extends "crowdocs/basic_layout.html" %}
+
+{% load static %}
+
+{% block title %}
+Article creation
+{% endblock title %}
+
+{% block extra_links %}
+<script type="text/javascript" src="{% static 'js/jquery-3.5.1.min.js' %}" charset="utf-8"></script>
+<script type="text/javascript" src="{% static 'js/jquery-te-1.4.0.min.js' %}" charset="utf-8"></script>
+<link type="text/css" rel="stylesheet" href="{% static 'css/jquery-te-1.4.0.css' %}">
+{% endblock extra_links %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="offset-s0 offset-m2 offset-l3 col s12 m8 l6 card-panel rounded">
+    <h5>New article on topic <b>{{ topic }}</b></h5>
+    <hr>
+
+    <div>
+      {% autoescape off %}
+      <form action="{% url 'articles:new_article' topic.id %}" method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input class="waves-effect waves-light btn-small" type="submit" value="Create article"/>
+      </form>
+      {% endautoescape %}
+    </div>
+
+  </div>
+
+</div>
+
+
+<script type="text/javascript">
+  $("textarea").jqte();
+</script>
+
+{% endblock content %}

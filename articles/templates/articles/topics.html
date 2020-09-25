@@ -1,0 +1,38 @@
+{% extends "crowdocs/basic_layout.html" %}
+
+{% load static %}
+
+{% block title %}
+Topics
+{% endblock title %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="offset-s0 offset-m2 offset-l3 col s12 m8 l6 card-panel row">
+    <h5>Latest topics:</h5>
+    <ul class="collection">
+      {% for topic in topics %}
+        <li class="collection-item">
+          <a href="{% url 'articles:topic_articles' topic.id %}">
+            <h6>{{ topic }}</h6>
+            <div class="smaller-text"><i>{{ topic.description }}</i></div>
+          </a>
+        </li>
+      {% empty %}
+        <p>No topics on this site yet.</p>
+      {% endfor %}
+    </ul>
+
+    <hr>
+
+    <a class="offset-s0 col s6 m4 l3 waves-effect waves-light btn-small"
+        href="{% url 'articles:new_topic' %}">
+        Suggest new topic
+    </a>
+  </div>
+
+</div>
+
+{% endblock content %}

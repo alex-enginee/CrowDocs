@@ -1,0 +1,90 @@
+{% load static %}
+
+<div class="row valign-wrapper">
+
+<!-- Logo / home page link -->
+<div class="col s6 m5 l3 to-left">
+  <a href="{% url 'index' %}">
+    <div class="rounded valign-wrapper">
+
+      <div class="">
+        <img
+            class="circle logo"
+            src="{% static 'img/logo_crowdocs_04.png' %}"
+            alt="Home page"
+          >
+      </div>
+
+      <div class="logo-title hide-on-small-only">Crowdocs</div>
+
+    </div>
+  </a>
+</div>
+
+
+<!-- Links to main sections -->
+<div class="col s6 row valign-wrapper">
+  <div class="col s2 m2 l1">
+  <a class="waves-effect waves-light btn-flat"
+      href="{% url 'articles:topics' %}">
+    <h6><b>Topics</b></h6>
+  </a>
+  </div>
+
+  <form class="col s2 m2 l3" action="/" method="get">
+    <input type="search" name="q" value="" placeholder="Search">
+
+  </form>
+
+  <div class="col s2 m2 l1">
+  <a class="waves-effect waves-light btn-flat"
+      href="{% url 'articles:topics' %}">
+    <h6><b>About</b></h6>
+  </a>
+  </div>
+</div>
+
+
+
+<!-- User name and avatar section -->
+{% if user.is_authenticated %}
+<div class="offset-m0 offset-l1 col m2 l2 dropdown">
+
+    <div class="valign-wrapper superrounded dropbtn">
+
+      <div class="">
+        {% if user.avatars.latest %}
+        <img class="circle responsive-img avatar"
+            src="{{ user.avatars.latest.image.url }}"
+            alt="(avatar)">
+        {% else %}
+        <img class="circle responsive-img avatar"
+            src="{% static 'img/default_avatar_01.png' %}"
+            alt="(def.avatar)">
+        {% endif %}
+      </div>
+
+      <div class="username hide-on-small-only">
+        <b><pre>  {{ user.username }}</pre></b>
+      </div>
+    </div>
+
+    <div class="dropdown-content-nojs rounded">
+      <a class="" href="{% url 'user_profile' %}">Profile</a>
+      <hr>
+      <a class="" href="{% url 'logout' %}">Logout</a>
+    </div>
+
+
+</div>
+
+{% else %}
+<div class="offset-s1 col s2 collection">
+
+  <a class="collection-item light-blue-text text-darken-4 smaller-text" href="{% url 'register' %}">Register</a>
+
+  <a class="collection-item light-blue-text text-darken-4 smaller-text" href="{% url 'login' %}">Login</a>
+</div>
+
+</div>
+{% endif %}

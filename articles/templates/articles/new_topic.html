@@ -1,0 +1,26 @@
+{% extends "crowdocs/basic_layout.html" %}
+
+{% load static %}
+
+{% block title %}
+Topic suggest
+{% endblock title %}
+
+{% block content %}
+
+<div class="card-panel">
+  <div class="">
+    <h5>Suggest new topic</h5>
+
+    <div>
+      <form action="{% url 'articles:new_topic' %}" method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input class="waves-effect waves-light btn-small" type="submit" value="Add topic"/>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

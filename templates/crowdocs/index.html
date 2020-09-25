@@ -1,0 +1,72 @@
+{% extends "crowdocs/basic_layout.html" %}
+
+{% block title %}
+Crowdocs
+{% endblock title %}
+
+{% block content %}
+<div class="row">
+
+  {% if que_articles %}
+    {% for article in que_articles %}
+    <div class="offset-s0 offset-m1 col s12 m10 card-panel query">
+      <a href="{% url 'articles:article' article.id %}">
+        <h6><b>{{ article.article_title }}</b></h6>
+        {% autoescape off %}
+        <div class="smaller-text">{{ article.short_text }} <span class="right">{{ article.date_added }}</span></div>
+        {% endautoescape %}
+      </a>
+    </div>
+    {% endfor %}
+
+  {% else %}
+  <div class="offset-s1 offset-m1 offset-l1 col s10 m4 l4  rounded section">
+    <div class="article card-panel">
+      <h4>Welcome to Crowdocs!</h4>
+
+      <p>
+        Project "<b>Crowdocs</b>" <i>(try to)</i> help people in collaborative creativity
+        <i>(for less then a week)</i> by suggesting convinient platform for editing text, articles and posts!
+      </p>
+      <p>
+        You can register on the site and add your articles to sections by topic,
+        as well as create your own topics. You can also share the link to the
+        article with your friends and other users, suggesting that they edit the
+        article or add new information to it. With crowdocs, students
+         can work together, learn together, and create their own unique text.
+         This is very convenient, because you can use the site to see which user
+         last edited the article and which text was added.<br>
+         Learn and create with <b>crowdocs</b>!
+      </p>
+    </div>
+  </div>
+
+  <div class="offset-s1 offset-m1 offset-l1 col s10 m5 l5 rounded section">
+    <div class="username">
+      <h5>Recent articles on site:</h5>
+    </div>
+
+      {% for article in latest_articles %}
+        <div class="offset-s0 offset-m1 col s12 m10 card-panel query">
+          <div class="">
+            <a href="{% url 'articles:article' article.id %}">
+              <h6><b>{{ article.article_title }}</b></h6>
+              {% autoescape off %}
+              <div><div class="smaller-text">{{ article.med_text }}</div></div>
+              {% endautoescape %}
+            </a>
+            <div class=""></div>
+            <div class="smaller-text right">{{ article.date_added }}</div>
+          </div>
+
+        </div>
+      {% empty %}
+        <p>No articles on site.</p>
+      {% endfor %}
+
+  </div>
+
+
+  {% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "crowdocs/doctype_tree.html" %}
+
+{% load static %}
+
+{% block body %}
+
+<header class="">
+  {% include 'crowdocs/header.html' %}
+</header>
+
+<main class="">
+{% block content %}
+{% endblock content %}
+</main>
+
+<footer class="">
+  {% include 'crowdocs/footer.html' %}
+</footer>
+
+{% endblock body %}
